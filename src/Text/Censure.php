@@ -235,8 +235,7 @@ class Censure
 			#скрипты не вырезаем, т.к. м.б. обходной маневр на с кодом на javascript:
 			#<script>document.write('сло'+'во')</script>
 			#хотя давать пользователю возможность использовать код на javascript нехорошо
-			$s = is_callable(array('HTML', 'strip_tags')) ? HTML::strip_tags($s, null, true, array('comment', 'style', 'map', 'frameset', 'object', 'applet'))
-														  : strip_tags($s);
+			$s = strip_tags($s);
 			#заменяем html-сущности в "чистый" UTF-8
 			$s = UTF8::html_entity_decode($s, $is_htmlspecialchars = true);
 		}

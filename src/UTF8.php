@@ -2245,7 +2245,7 @@ class UTF8
 	 */
 	public static function diactrical_remove($s, $additional_chars = null, $is_can_restored = false, &$restore_table = null)
 	{
-		if (! ReflectionTypeHint::isValid()) return false;
+
 		if (is_null($s)) return $s;
 
 		if ($additional_chars)
@@ -2285,7 +2285,7 @@ class UTF8
 	 */
 	public static function diactrical_restore($s, array $restore_table)
 	{
-		if (! ReflectionTypeHint::isValid()) return false;
+
 		if (is_null($s)) return $s;
 
 		if (! $restore_table) return $s;
@@ -2313,7 +2313,7 @@ class UTF8
 	 */
 	public static function convert_from($data, $charset = 'cp1251')
 	{
-		if (! ReflectionTypeHint::isValid()) return false;
+
 		return self::_convert($data, $charset, 'UTF-8');
 	}
 
@@ -2326,7 +2326,7 @@ class UTF8
 	 */
 	public static function convert_to($data, $charset = 'cp1251')
 	{
-		if (! ReflectionTypeHint::isValid()) return false;
+
 		return self::_convert($data, 'UTF-8', $charset);
 	}
 
@@ -2342,7 +2342,7 @@ class UTF8
 	 */
 	private static function _convert($data, $charset_from, $charset_to)
 	{
-		if (! ReflectionTypeHint::isValid()) return false;  #for recursive calls
+		  #for recursive calls
 		if ($charset_from === $charset_to) return $data;
 		if (is_array($data))
 		{
@@ -2484,7 +2484,7 @@ class UTF8
 	 */
 	public static function strict($s)
 	{
-		if (! ReflectionTypeHint::isValid()) return false;
+
 		if (is_null($s)) return $s;
 		return preg_replace('/[\x00-\x08\x0B\x0C\x0E-\x1F]+/sSX', '', $s);
 	}
@@ -2501,7 +2501,7 @@ class UTF8
 	 */
 	public static function is_ascii($data)
 	{
-		if (! ReflectionTypeHint::isValid()) return false;
+
 		if (is_array($data))
 		{
 			foreach ($data as $k => &$v)
@@ -2534,7 +2534,7 @@ class UTF8
 	 */
 	public static function is_utf8($data, $is_strict = true)
 	{
-		if (! ReflectionTypeHint::isValid()) return false;
+
 		if (is_array($data))
 		{
 			foreach ($data as $k => &$v)
@@ -2567,7 +2567,7 @@ class UTF8
 	 */
 	public static function check($s, $is_strict = true)
 	{
-		if (! ReflectionTypeHint::isValid()) return false;
+
 		for ($i = 0, $len = strlen($s); $i < $len; $i++)
 		{
 			$c = ord($s[$i]);
@@ -2619,7 +2619,7 @@ class UTF8
 	 */
 	public static function blocks_check($data, $blocks)
 	{
-		if (! ReflectionTypeHint::isValid()) return false;
+
 
 		if (is_array($data))
 		{
@@ -2701,7 +2701,7 @@ class UTF8
 	 */
 	public static function autoconvert_request($is_hex2bin = false, $charset = 'cp1251')
 	{
-		if (! ReflectionTypeHint::isValid()) return false;
+
 		$is_converted = false;
 		$is_broken = false;
 		foreach (array('_GET', '_POST', '_COOKIE', '_FILES') as $k => $v)
@@ -2779,7 +2779,7 @@ class UTF8
 	 */
 	public static function strcmp($s1, $s2, $locale = '')
 	{
-		if (! ReflectionTypeHint::isValid()) return false;
+
 		if (is_null($s1) || is_null($s2)) return null;
 		if (! function_exists('collator_create')) return strcmp($s1, $s2);
 		# PHP 5 >= 5.3.0, PECL intl >= 1.0.0
@@ -2807,7 +2807,7 @@ class UTF8
 	 */
 	public static function strncmp($s1, $s2, $length)
 	{
-		if (! ReflectionTypeHint::isValid()) return false;
+
 		if (is_null($s1) || is_null($s2)) return null;
 		return self::strcmp(self::substr($s1, 0, $length), self::substr($s2, 0, $length));
 	}
@@ -2824,7 +2824,7 @@ class UTF8
 	 */
 	public static function strcasecmp($s1, $s2)
 	{
-		if (! ReflectionTypeHint::isValid()) return false;
+
 		if (is_null($s1) || is_null($s2)) return null;
 		return self::strcmp(self::lowercase($s1), self::lowercase($s2));
 	}
@@ -2838,7 +2838,7 @@ class UTF8
 	 */
 	public static function to_unicode($s)
 	{
-		if (! ReflectionTypeHint::isValid()) return false;
+
 		if (is_null($s)) return $s;
 
 		$s2 = null;
@@ -2862,7 +2862,7 @@ class UTF8
 	 */
 	public static function from_unicode($a)
 	{
-		if (! ReflectionTypeHint::isValid()) return false;
+
 		if (is_null($a)) return $a;
 
 		#since PHP-5.3.x iconv() little faster then mb_convert_encoding()
@@ -2893,7 +2893,7 @@ class UTF8
 	 */
 	public static function ord($char)
 	{
-		if (! ReflectionTypeHint::isValid()) return false;
+
 		if (is_null($char)) return $char;
 
 		static $cache = array();
@@ -2926,7 +2926,7 @@ class UTF8
 	 */
 	public static function chr($cp)
 	{
-		if (! ReflectionTypeHint::isValid()) return false;
+
 		if (is_null($cp)) return $cp;
 
 		static $cache = array();
@@ -2956,7 +2956,7 @@ class UTF8
 	 */
 	public static function chunk_split($s, $length = null, $glue = null)
 	{
-		if (! ReflectionTypeHint::isValid()) return false;
+
 		if (is_null($s)) return $s;
 
 		$length = intval($length);
@@ -2976,7 +2976,7 @@ class UTF8
 	 */
 	public static function array_change_key_case($a, $mode)
 	{
-		if (! ReflectionTypeHint::isValid()) return false;
+
 		if (! is_array($a)) return $a;
 		$a2 = array();
 		foreach ($a as $k => $v)
@@ -3007,7 +3007,7 @@ class UTF8
 	 */
 	public static function convert_case($data, $mode, $is_ascii_optimization = true)
 	{
-		if (! ReflectionTypeHint::isValid()) return false;
+
 
 		if (is_array($data))
 		{
@@ -3041,7 +3041,7 @@ class UTF8
 	 * @return  scalar|bool|null   Returns FALSE if error occurred	 */
 	public static function lowercase($data)
 	{
-		if (! ReflectionTypeHint::isValid()) return false;
+
 		return self::convert_case($data, CASE_LOWER);
 	}
 
@@ -3053,7 +3053,7 @@ class UTF8
 	 */
 	public static function uppercase($data)
 	{
-		if (! ReflectionTypeHint::isValid()) return false;
+
 		return self::convert_case($data, CASE_UPPER);
 	}
 
@@ -3065,7 +3065,7 @@ class UTF8
 	 */
 	public static function strtolower($data)
 	{
-		if (! ReflectionTypeHint::isValid()) return false;
+
 		return self::convert_case($data, CASE_LOWER);
 	}
 
@@ -3077,7 +3077,7 @@ class UTF8
 	 */
 	public static function strtoupper($data)
 	{
-		if (! ReflectionTypeHint::isValid()) return false;
+
 		return self::convert_case($data, CASE_UPPER);
 	}
 
@@ -3101,7 +3101,7 @@ class UTF8
 	 */
 	public static function html_entity_decode($s, $is_special_chars = false)
 	{
-		if (! ReflectionTypeHint::isValid()) return false;
+
 		if (! is_string($s)) return $s;
 
 		#speed improve
@@ -3158,7 +3158,7 @@ class UTF8
 	 */
 	public static function html_entity_encode($s, $is_special_chars_only = false)
 	{
-		if (! ReflectionTypeHint::isValid()) return false;
+
 		if (! is_string($s)) return $s;
 
 		#if ($is_special_chars_only) return strtr($s, array_flip(self::$html_special_chars_table));
@@ -3195,7 +3195,7 @@ class UTF8
 	 */
 	public static function preg_quote_case_insensitive($s, $delimiter = null)
 	{
-		if (! ReflectionTypeHint::isValid()) return false;
+
 		if (is_null($s)) return $s;
 
 		if (self::is_ascii($s)) return '(?i:' . preg_quote($s, $delimiter) . ')'; #speed improve
@@ -3235,7 +3235,7 @@ class UTF8
 	 */
 	public static function preg_match_all($pattern, $subject, &$matches, $flags = PREG_PATTERN_ORDER, $char_offset = 0)
 	{
-		if (! ReflectionTypeHint::isValid()) return false;
+
 		if (is_null($subject)) return null;
 
 		$byte_offset = ($char_offset > 0) ? strlen(self::substr($subject, 0, $char_offset)) : $char_offset;
@@ -3275,7 +3275,7 @@ class UTF8
 	 */
 	public static function str_limit($s, $maxlength = null, $continue = "\xe2\x80\xa6", &$is_cutted = null, $tail_min_length = 20) #"\xe2\x80\xa6" = "&hellip;"
 	{
-		if (! ReflectionTypeHint::isValid()) return false;
+
 		if (is_null($s)) return $s;
 
 		$is_cutted = false;
@@ -3346,7 +3346,7 @@ class UTF8
 	 */
 	public static function str_split($s, $length = null)
 	{
-		if (! ReflectionTypeHint::isValid()) return false;
+
 		if (is_null($s)) return $s;
 
 		$length = ($length === null) ? 1 : intval($length);
@@ -3371,7 +3371,7 @@ class UTF8
 	 */
 	public static function strlen($s)
 	{
-		if (! ReflectionTypeHint::isValid()) return false;
+
 		if (is_null($s)) return $s;
 
 		//since PHP-5.3.x mb_strlen() faster then strlen(utf8_decode())
@@ -3418,7 +3418,7 @@ class UTF8
 	 */
 	public static function strpos($s, $needle, $offset = null)
 	{
-		if (! ReflectionTypeHint::isValid()) return false;
+
 		if (is_null($s)) return $s;
 
 		if ($offset === null || $offset < 0) $offset = 0;
@@ -3442,7 +3442,7 @@ class UTF8
 	 */
 	public static function stripos($s, $needle, $offset = null)
 	{
-		if (! ReflectionTypeHint::isValid()) return false;
+
 		if (is_null($s)) return $s;
 
 		if ($offset === null || $offset < 0) $offset = 0;
@@ -3470,7 +3470,7 @@ class UTF8
 	 */
 	public static function strrev($s)
 	{
-		if (! ReflectionTypeHint::isValid()) return false;
+
 		if (is_null($s)) return $s;
 
 		if (0) #TODO test speed
@@ -3496,7 +3496,7 @@ class UTF8
 	 */
 	public static function substr($s, $offset, $length = null)
 	{
-		if (! ReflectionTypeHint::isValid()) return false;
+
 		if (is_null($s)) return $s;
 
 		#since PHP-5.3.x mb_substr() faster then iconv_substr()
@@ -3532,7 +3532,7 @@ class UTF8
 	 */
 	public static function substr_replace($s, $replacement, $start, $length = null)
 	{
-		if (! ReflectionTypeHint::isValid()) return false;
+
 		if (is_null($s)) return $s;
 
 		if (! is_array($a = self::str_split($s))) return false;
@@ -3550,7 +3550,7 @@ class UTF8
 	 */
 	public static function ucfirst($s, $is_other_to_lowercase = true)
 	{
-		if (! ReflectionTypeHint::isValid()) return false;
+
 		if (is_null($s)) return $s;
 
 		if ($s === '' || ! is_string($s)) return $s;
@@ -3570,7 +3570,7 @@ class UTF8
 	 */
 	public static function ucwords($s, $is_other_to_lowercase = true, $spaces_re = '~([\pZ\s]+)~suSX') #\pXps is POSIX space: property Z or tab, NL, VT, FF, CR
 	{
-		if (! ReflectionTypeHint::isValid()) return false;
+
 		if (is_null($s)) return $s;
 
 		$words = preg_split($spaces_re, $s, -1, PREG_SPLIT_NO_EMPTY | PREG_SPLIT_DELIM_CAPTURE);
@@ -3598,7 +3598,7 @@ class UTF8
 	 */
 	public static function unescape($data, $is_rawurlencode = false)
 	{
-		if (! ReflectionTypeHint::isValid()) return false;
+
 		if (is_array($data))
 		{
 			$d = array();
@@ -3726,7 +3726,7 @@ class UTF8
 	 */
 	public static function textarea_rows($s, $cols, $min_rows = 3, $max_rows = 32)
 	{
-		if (! ReflectionTypeHint::isValid()) return false;
+
 		if (is_null($s)) return $s;
 
 		if (strlen($s) == 0) return $min_rows;  #speed improve
@@ -3747,7 +3747,7 @@ class UTF8
 	 */
 	public static function ltrim($s, $charlist = null)
 	{
-		if (! ReflectionTypeHint::isValid()) return false;
+
 		if (is_null($s)) return $s;
 		if ($charlist === null || self::is_ascii($charlist)) return ltrim($s);
 		return preg_replace('~^[' . self::_preg_quote_class($charlist, '~') . ']+~suSX', '', $s);
@@ -3760,7 +3760,7 @@ class UTF8
 	 */
 	public static function rtrim($s, $charlist = null)
 	{
-		if (! ReflectionTypeHint::isValid()) return false;
+
 		if (is_null($s)) return $s;
 		if ($charlist === null || self::is_ascii($charlist)) return rtrim($s);
 		return preg_replace('~[' . self::_preg_quote_class($charlist, '~') . ']+$~suSX', '', $s);
@@ -3773,7 +3773,7 @@ class UTF8
 	 */
 	public static function trim($s, $charlist = null)
 	{
-		if (! ReflectionTypeHint::isValid()) return false;
+
 		if (is_null($s)) return $s;
 		if ($charlist === null || self::is_ascii($charlist)) return trim($s);
 		$charlist_re = self::_preg_quote_class($charlist, '~');
@@ -3802,7 +3802,7 @@ class UTF8
 	 */
 	public static function str_pad($s, $length, $pad_str = ' ', $type = STR_PAD_RIGHT)
 	{
-		if (! ReflectionTypeHint::isValid()) return false;
+
 		if (is_null($s)) return $s;
 
 		$input_len = self::strlen($s);
@@ -3849,7 +3849,7 @@ class UTF8
 	 */
 	public static function strspn($str, $mask, $start = null, $length = null)
 	{
-		if (! ReflectionTypeHint::isValid()) return false;
+
 		#if (self::is_ascii($str) && self::is_ascii($mask)) return strspn($str, $mask, $start, $length);
 		if ($start !== null || $length !== null) $str = self::substr($str, $start, $length);
 		if (preg_match('~^[' . preg_quote($mask, '~') . ']+~uSX', $str, $m)) self::strlen($m[0]);
@@ -3883,7 +3883,7 @@ class UTF8
 		$is_echo = false,
 		$is_simulate = false)
 	{
-		if (! ReflectionTypeHint::isValid()) return false;
+
 
 		$dh = opendir($dir);
 		if (! is_resource($dh)) return false;
@@ -3966,7 +3966,7 @@ class UTF8
 	 */
 	public static function range($low, $high, $step = 1)
 	{
-		if (! ReflectionTypeHint::isValid()) return false;
+
 		if (is_int($low) || is_int($high)) return range($low, $high, $step);  #speed improve
 		$low_cp  = self::ord($low);
 		$high_cp = self::ord($high);
@@ -3984,7 +3984,7 @@ class UTF8
 	 */
 	public static function strtr($s, $from, $to = null)
 	{
-		if (! ReflectionTypeHint::isValid()) return false;
+
 		if (is_null($s)) return $s;
 		if (is_array($from)) return strtr($s, $from); #speed improve
 		$keys   = self::str_split($from);
