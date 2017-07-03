@@ -2,7 +2,6 @@
 
 namespace Censure\Text;
 
-use Censure\ReflectionTypeHint;
 use Censure\UTF8;
 
 /**
@@ -53,7 +52,6 @@ class Censure
 	 *                                     * PREG_RECURSION_LIMIT_ERROR (see also pcre.recursion_limit)
 	 *                                     * PREG_BAD_UTF8_ERROR
 	 *                                     * PREG_BAD_UTF8_OFFSET_ERROR (since PHP 5.3.0)
-	 *                                   Или -1, если ReflectionTypeHint вернул ошибку
 	 */
 	public static function parse(
 		$s,
@@ -63,7 +61,6 @@ class Censure
 		$replace = null,
 		$charset = 'UTF-8')
 	{
-		if (! ReflectionTypeHint::isValid()) return -1;
 		if ($s === null) return null;
 
 		static $re_badwords = null;
