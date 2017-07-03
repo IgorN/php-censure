@@ -2,6 +2,9 @@
 
 namespace Censure\Text;
 
+use Censure\ReflectionTypeHint;
+use Censure\UTF8;
+
 /**
  * Определение наличия мата (нецензурных слов) в тексте, матотест
  *
