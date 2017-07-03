@@ -2784,7 +2784,7 @@ class UTF8
 		if (! function_exists('collator_create')) return strcmp($s1, $s2);
 		# PHP 5 >= 5.3.0, PECL intl >= 1.0.0
 		# If empty string ("") or "root" are passed, UCA rules will be used.
-		$c = new Collator($locale);
+		$c = new \Collator($locale);
 		if (! $c)
 		{
 			# Returns an "empty" object on error. You can use intl_get_error_code() and/or intl_get_error_message() to know what happened.
