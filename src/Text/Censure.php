@@ -1,4 +1,7 @@
 <?php
+
+namespace Censure\Text;
+
 /**
  * Определение наличия мата (нецензурных слов) в тексте, матотест
  *
@@ -23,7 +26,7 @@
  * @author   Nasibullin Rinat
  * @version  3.2.7
  */
-class Text_Censure
+class Censure
 {
 	#запрещаем создание экземпляра класса, вызов методов этого класса только статически!
 	private function __construct() {}
